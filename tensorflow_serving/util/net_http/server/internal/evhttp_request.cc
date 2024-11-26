@@ -364,7 +364,12 @@ void EvHTTPRequest::ReplyWithStatus(HTTPStatusCode status) {
   }
 }
 
+
 void EvHTTPRequest::EvSendReply(HTTPStatusCode status) {
+  
+  evhttp_set_max_body_size(server_->getEvhttp(), 10 * 1024 * 1024);  // 10MB
+
+
   evhttp_send_reply(parsed_request_->request, static_cast<int>(status), nullptr,
                     output_buf);
   server_->DecOps();
