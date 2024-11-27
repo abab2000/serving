@@ -37,12 +37,6 @@ namespace main {
 class Server {
  public:
   struct Options {
-  struct evhttp* getEvhttp() {
-      if (http_server_) {
-          return http_server_->getEvhttp();
-      return nullptr;
-  }
-
     //
     // gRPC Server options
     //

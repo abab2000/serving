@@ -46,10 +46,6 @@ class EvHTTPServer final : public HTTPServerInterface, ServerSupport {
  public:
   virtual ~EvHTTPServer();
 
-  struct evhttp* getEvhttp() {
-    return evhttp_;
-  }
-
   EvHTTPServer(const EvHTTPServer& other) = delete;
   EvHTTPServer& operator=(const EvHTTPServer& other) = delete;
 

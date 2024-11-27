@@ -366,14 +366,6 @@ void EvHTTPRequest::ReplyWithStatus(HTTPStatusCode status) {
 
 
 void EvHTTPRequest::EvSendReply(HTTPStatusCode status) {
-    struct evhttp* evhttp = server_->getEvhttp();
-    if (evhttp == nullptr) {
-            std::cerr << "------------Failed to get evhttp instance!" << std::endl;
-    } else {
-            std::cout << "------------Successfully got evhttp instance!" << std::endl;
-            evhttp_set_max_body_size(evhttp, 10 * 1024 * 1024);  // 10MB
-            std::cout << "Max body size set to 10MB." << std::endl;
-    }
 
   evhttp_send_reply(parsed_request_->request, static_cast<int>(status), nullptr,
                     output_buf);
