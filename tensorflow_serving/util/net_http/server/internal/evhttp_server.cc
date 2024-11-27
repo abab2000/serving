@@ -100,7 +100,7 @@ bool EvHTTPServer::Initialize() {
   immediate_ = event_base_init_common_timeout(ev_base_, &tv_zero);
 
   ev_http_ = evhttp_new(ev_base_);
-  evhttp_set_max_body_size(ev_http_, 10 * 1024 * 1024);  // 10MB
+  evhttp_set_max_body_size(ev_http_, 100 * 1024 * 1024);  // 10MB
   if (ev_http_ == nullptr) {
     NET_LOG(FATAL, "Failed to create evhttp.");
     return false;
