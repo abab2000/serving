@@ -46,6 +46,10 @@ class EvHTTPServer final : public HTTPServerInterface, ServerSupport {
  public:
   virtual ~EvHTTPServer();
 
+  struct evhttp* getEvhttp() {
+    return evhttp_;
+  }
+
   EvHTTPServer(const EvHTTPServer& other) = delete;
   EvHTTPServer& operator=(const EvHTTPServer& other) = delete;
 
@@ -79,6 +83,7 @@ class EvHTTPServer final : public HTTPServerInterface, ServerSupport {
   bool EventLoopSchedule(std::function<void()> fn) override;
 
  private:
+  struct evhttp* evhttp_;
   static void DispatchEvRequestFn(struct evhttp_request* req, void* server);
 
   void DispatchEvRequest(struct evhttp_request* req);

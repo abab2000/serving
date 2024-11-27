@@ -37,6 +37,12 @@ namespace main {
 class Server {
  public:
   struct Options {
+  struct evhttp* getEvhttp() {
+      if (http_server_) {
+          return http_server_->getEvhttp();
+      return nullptr;
+  }
+
     //
     // gRPC Server options
     //
@@ -118,6 +124,7 @@ class Server {
   void WaitForTermination();
 
  private:
+  td::unique_ptr<net_http::HTTPServerInterface> http_server_;
   // Polls the filesystem, parses config at specified path, and calls
   // ServerCore::ReloadConfig with the captured model config.
   void PollFilesystemAndReloadConfig(const string& config_file_path);
